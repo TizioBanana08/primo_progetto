@@ -1,0 +1,16 @@
+{% extends 'base.html'%}
+{%block title%}
+    {{block.super}} | IF ELSE ELIF
+{%endblock title%}
+{%block content%}
+   {% if not var1 > var2 %}
+        <p>var1 non è maggiore di var2</p>
+   {% else %}
+        <p>var1 è maggiore di var2</p>
+   {% endif %}
+    {% if var1 > var2 %}
+          <p>var1 è maggiore di var2</p>
+    {% elif var1 < var2 %}
+          <p>var1 è minore di var2</p>
+    {% endif %}
+{%endblock content%}
