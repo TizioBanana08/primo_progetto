@@ -1,6 +1,9 @@
 from django.shortcuts import render
 import datetime
 # Create your views here.
+def index(request):
+    return render(request, "seconda_app/index.html")
+
 def es_if(request):
     var ={'var1': 5, 'var2': 10, 'var3': 15}
     return render(request, "seconda_app/es_if.html",var)
