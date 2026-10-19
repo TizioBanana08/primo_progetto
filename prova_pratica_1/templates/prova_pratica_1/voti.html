@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block title %} {{block.super}} | Voti {% endblock title %}
+{% block content %}
+    <table style="border: 1px solid black">
+        <tr>
+            <td style="border: 1px solid black">Studente</td>
+            <td style="border: 1px solid black">Voto</td>
+        </tr>
+        {% for key, value in dati.items %}
+            <tr>
+                <td style="border: 1px solid black">{{key}}</td>
+                <td style="border: 1px solid black">{{value}}</td>      
+            </tr>
+        {% endfor %}
+    </table>
+{% endblock content %}
