@@ -1,6 +1,6 @@
 from .models import Articolo, Giornalista
 from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import get_object_or_404, render
 # Create your views here.
 #VERSIONE 1: Gli articoli e i giornalisti sono stampati in colonne separate
 # def home(request):
@@ -33,3 +33,12 @@ def articoloDetailView(request,pk):
     articolo=Articolo.objects.get(pk=pk)
     context ={"articolo":articolo}
     return render(request, "news/articolo_detail.html",context)
+def listaArticoliView(request, pk=None):
+    if pk is None:
+        articoli=Articolo.objects.all()
+        giornalista= None
+    else:
+        giornalista = get_object_or_404(Giornalista, pk=pk)
+        articoli = Articolo.objects.filter(giornalista=giornalista)
+    context = {"articoli": articoli, "giornalista": giornalista}
+    return render(request, "news/lista_articoli.html",context)
