@@ -191,4 +191,85 @@
         <p>Nessun articolo trovato.</p>
     {% endif %}
 </section>
+
+<section class="mb-4">
+    <h2>16. Articoli pubblicati a gennaio 2023</h2>
+    {% if articoli_mese_anno %}
+        <ul>
+            {% for articolo in articoli_mese_anno %}
+                <li>
+                    <a href="{% url 'news:articolo_detail' pk=articolo.pk %}">{{ articolo.titolo }}</a>
+                    — {{ articolo.data }}
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>Nessun articolo trovato.</p>
+    {% endif %}
+</section>
+
+<section class="mb-4">
+    <h2>17. Giornalisti con almeno un articolo con almeno 100 visualizzazioni</h2>
+    {% if giornalisti_con_articoli_popolari %}
+        <ul>
+            {% for giornalista in giornalisti_con_articoli_popolari %}
+                <li>
+                    <a href="{% url 'news:lista_articoli_giornalista' pk=giornalista.pk %}">
+                        {{ giornalista }}
+                    </a>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>Nessun giornalista trovato.</p>
+    {% endif %}
+</section>
+
+<section class="mb-4">
+    <h2>18. Articoli con giornalista nato dopo il {{ data_riferimento }} e almeno {{ soglia_visualizzazioni }} visualizzazioni (AND)</h2>
+    {% if articoli_con_and %}
+        <ul>
+            {% for articolo in articoli_con_and %}
+                <li>
+                    <a href="{% url 'news:articolo_detail' pk=articolo.pk %}">{{ articolo.titolo }}</a>
+                    — {{ articolo.giornalista }} — {{ articolo.visualizzazioni }} visualizzazioni
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>Nessun articolo trovato.</p>
+    {% endif %}
+</section>
+
+<section class="mb-4">
+    <h2>19. Articoli con giornalista nato dopo il {{ data_riferimento }} oppure almeno {{ soglia_visualizzazioni }} visualizzazioni (OR)</h2>
+    {% if articoli_con_or %}
+        <ul>
+            {% for articolo in articoli_con_or %}
+                <li>
+                    <a href="{% url 'news:articolo_detail' pk=articolo.pk %}">{{ articolo.titolo }}</a>
+                    — {{ articolo.giornalista }} — {{ articolo.visualizzazioni }} visualizzazioni
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>Nessun articolo trovato.</p>
+    {% endif %}
+</section>
+
+<section class="mb-4">
+    <h2>20. Articoli il cui giornalista non è nato prima del {{ data_riferimento }} (NOT)</h2>
+    {% if articoli_con_not %}
+        <ul>
+            {% for articolo in articoli_con_not %}
+                <li>
+                    <a href="{% url 'news:articolo_detail' pk=articolo.pk %}">{{ articolo.titolo }}</a>
+                    — {{ articolo.giornalista }} — {{ articolo.giornalista.anno_di_nascita }}
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>Nessun articolo trovato.</p>
+    {% endif %}
+</section>
 {% endblock content %}
