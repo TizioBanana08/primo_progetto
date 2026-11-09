@@ -1,7 +1,7 @@
 *.log
 *.pot
-*.pyc
-__pycache__
+*.py[cod]
+**/__pycache__/
 media
 # Backup files 
 *.bak 
