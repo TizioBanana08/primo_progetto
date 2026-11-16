@@ -1,12 +1,14 @@
 from django.urls import path
-from .views import home,articoloDetailView,listaArticoliView,queryBase
+from .views import home,articoloDetailView,listaArticoliView,queryBase,giornalistaDetailView,index
 
 app_name="news"
 
 urlpatterns =[
     path('',home,name="homeview"),
+    path("index/", index, name="index"),
     path("articoli/<int:pk>",articoloDetailView, name="articolo_detail"),
     path("lista_articoli/", listaArticoliView, name="lista_articoli"),
     path("lista_articoli/<int:pk>",listaArticoliView, name="lista_articoli_giornalista"),
-    path("query_base",queryBase,name="query_base")
+    path("query_base",queryBase,name="query_base"),
+    path("giornalista/<int:pk>",giornalistaDetailView,name="giornalista_detail")
     ]

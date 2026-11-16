@@ -33,6 +33,8 @@ def home(request):
     context={"articoli": articoli, "giornalisti": giornalisti}
     print(context)
     return render(request, 'news/homepage.html',context)
+def index(request):
+    return render(request, 'news/index.html')
 def articoloDetailView(request,pk):
     articolo=Articolo.objects.get(pk=pk)
     context ={"articolo":articolo}
@@ -130,3 +132,9 @@ def queryBase(request):
         "soglia_visualizzazioni": visualizzazioni,
     }
     return render(request, "news/query.html", context)
+def giornalistaDetailView(request,pk=None):
+    giornalista=get_object_or_404(Giornalista,pk=pk)
+    articoli=Articolo.objects.filter(giornalista=giornalista)
+    context={"giornalista":giornalista,"articoli":articoli}
+    print(context)
+    return render(request,"news/giornalista_detail.html",context)
