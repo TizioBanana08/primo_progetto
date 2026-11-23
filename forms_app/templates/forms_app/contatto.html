@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-
+{% load crispy_forms_tags %}
 {% block title %}
     {{block.super}} | Contatti
 {% endblock title %}
@@ -8,7 +8,7 @@
     <h1>Compila il form di contatto ti contatteremo quanto prima!</h1>
     <form method="post">
         {% csrf_token %}
-        {{form.as_p}}
+        {{form|crispy}}
         <input type="submit" class="btn btn-danger" value="INVIA">
     </form>
 </div>
